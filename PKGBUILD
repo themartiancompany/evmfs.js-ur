@@ -77,6 +77,7 @@ _pkgdesc=(
 )
 pkgdesc="${_pkgdesc[*]}"
 _commit="8560a11f42a0e0208e7e915daca6b811dfea860d"
+_pkgver="2.0.4"
 pkgver="2.0.5"
 pkgrel=1
 arch=(
@@ -234,7 +235,7 @@ build() {
     npm \
       pack
     mv \
-      "${_ns}-${_pkg}-${pkgver}.tgz" \
+      "${_ns}-${_pkg}-${_pkgver}.tgz" \
       "${srcdir}"
   fi
 }
@@ -262,7 +263,7 @@ package_nodejs-opfs() {
   npm \
     install \
     "${_npm_options[@]}" \
-    "${srcdir}/${_pkg}-${pkgver}.tgz"
+    "${srcdir}/${_pkg}-${_pkgver}.tgz"
   rm \
     -fr \
       "${pkgdir}/usr/etc"
