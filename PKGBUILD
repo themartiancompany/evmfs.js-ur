@@ -203,6 +203,42 @@ validpgpkeys=(
   '12D8E3D7888F741E89F86EE0FEC8567A644F1D16'
 )
 
+build() {
+  local \
+    _files=()
+  _files+=(
+    "AUTHORS.rst"
+    "COPYING"
+    "README.md"
+    "eslint.config.mjs"
+    "fs-worker"
+    "fs-worker.webpack.config.cjs"
+    "man"
+    "opfs"
+    "package.json"
+  )
+  if [[ "${_npm}" == "false" ]]; then
+    cd \
+      "${_tarname}"
+    mkdir \
+      -p \
+      "build"
+    cp \
+      -r \
+      "${_files[@]}" \
+      "build"
+    cd \
+      "build"
+    npm \
+      install
+    npm \
+      pack
+    mv \
+      "${_ns}-${_pkg}-${pkgver}.tgz" \
+      "${srcdir}"
+  fi
+}
+
 package_nodejs-opfs() {
   local \
     _npm_options=() \
@@ -237,3 +273,4 @@ package_nodejs-opfs() {
 }
 
 # vim:set sw=2 sts=-1 et:
+
