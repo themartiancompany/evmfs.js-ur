@@ -28,10 +28,10 @@
 #     <pellegrinoprevete@gmail.com>
 #     <dvorak@0x87003Bd6C074C713783df04f36517451fF34CBEf>
 
-_os="$( \
+_os="$(
   uname \
     -o)"
-_evmfs_available="$( \
+_evmfs_available="$(
   command \
     -v \
     "evmfs" || \
@@ -64,16 +64,17 @@ if [[ ! -v "${_archive_format}" ]]; then
     fi
   fi
 fi
-_pkg=opfs
-pkgbase="nodejs-${_pkg}"
+_pkg_npm=encoding-tools
+_pkg="${_pkg_npm}.js"
+pkgbase="${_pkg}"
 pkgname=(
   "${pkgbase}"
 )
 _pkgdesc=(
-  "Browser-compatible 'fs' module"
-  "obtained combining the"
-  "'Happy OPFS' and the"
-  "OPFS Tools modules."
+  "Javascript implementation of"
+  "the 'Encoding Tools' collection"
+  "used in EVMFS reference"
+  "implementation."
 )
 pkgdesc="${_pkgdesc[*]}"
 _commit="8560a11f42a0e0208e7e915daca6b811dfea860d"
@@ -109,12 +110,12 @@ _tarname="${_pkg}-${_tag}"
 _npm_tarname="${_ns}-${_pkg}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
 _npm_tarfile="${_npm_tarname}.${_archive_format}"
-_sum="26d4230e0bff3acbd8618eb34aeb93f08a94281e9ac0c54f3f8758ad5225d2d1"
-_sig_sum="296c4fb420c0275d01d095ea9cbcb49ecb25791346d26699c512c073634f6ebb"
-_bundle_sum="e7bf622ac1afab6ebdd14f6ff621874d24aca9e4899f1fa7616a84faea4ed81c"
-_bundle_sig_sum="bdf198594304ccfd8d262ffa4ff5f1a0511ee198a73b1c74ed227f346eda4998"
-_npm_sum="e6f8f5b672465be2bfac83de21f575578612afe510b8fc059e1ce839c4cdc021"
-_npm_sig_sum="39f80370d9cf9b32cb9a41b9976ad9a8915ba7c4350ba24b7729b39af6ba3d39"
+_sum="ciao"
+_sig_sum="SKIP"
+_bundle_sum="SKIP"
+_bundle_sig_sum="SKIP"
+_npm_sum="SKIP"
+_npm_sig_sum="SKIP"
 # Truocolo
 _evmfs_ns="0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b"
 # Dvorak
@@ -211,12 +212,19 @@ build() {
     "AUTHORS.rst"
     "COPYING"
     "README.md"
+    "bin2txt"
+    "encoding-tools"
     "eslint.config.mjs"
-    "fs-worker"
-    "fs-worker.webpack.config.cjs"
+    "libbin2txt"
+    "libtxt2bin"
     "man"
-    "opfs"
+    "fs-worker.js"
+    "fs-worker.webpack.config.js"
+    "index.html"
     "package.json"
+    "serve.json"
+    "txt2bin"
+    "webpack.config.js"
   )
   if [[ "${_npm}" == "false" ]]; then
     cd \
@@ -235,7 +243,7 @@ build() {
     npm \
       pack
     mv \
-      "${_ns}-${_pkg}-${_pkgver}.tgz" \
+      "${_pkg_npm}-${_pkgver}.tgz" \
       "${srcdir}"
   fi
 }
@@ -263,7 +271,7 @@ package_nodejs-opfs() {
   npm \
     install \
     "${_npm_options[@]}" \
-    "${srcdir}/${_ns}-${_pkg}-${_pkgver}.tgz"
+    "${srcdir}/${_pkg_npm}-${_pkgver}.tgz"
   rm \
     -fr \
       "${pkgdir}/usr/etc"
