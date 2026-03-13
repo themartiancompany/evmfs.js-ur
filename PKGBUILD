@@ -110,7 +110,7 @@ _tarname="${_pkg}-${_tag}"
 _npm_tarname="${_ns}-${_pkg}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
 _npm_tarfile="${_npm_tarname}.${_archive_format}"
-_sum="ciao"
+_sum="e78e5ee6b2a434d29eea1b6811b552d532a2a0c742f31d1bce431b57aa066145"
 _sig_sum="SKIP"
 _bundle_sum="SKIP"
 _bundle_sig_sum="SKIP"
@@ -248,7 +248,7 @@ build() {
   fi
 }
 
-package_nodejs-opfs() {
+package_encoding-tools.js() {
   local \
     _npm_options=() \
     _find_opts=()
