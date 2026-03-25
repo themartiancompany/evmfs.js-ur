@@ -64,7 +64,7 @@ if [[ ! -v "${_archive_format}" ]]; then
     fi
   fi
 fi
-_pkg_npm=encoding-tools
+_pkg_npm=evmfs
 _pkg="${_pkg_npm}.js"
 pkgbase="${_pkg}"
 pkgname=(
@@ -77,7 +77,7 @@ _pkgdesc=(
   "implementation."
 )
 pkgdesc="${_pkgdesc[*]}"
-_commit="cbcc3fb0d0fd53436450c7d9f2740d7677a16e8b"
+_commit="d4871e40d299fd97dc9377aa7fb47852536da4f6"
 _pkgver="0.0.3"
 pkgver="0.0.3"
 pkgrel=1
@@ -94,7 +94,8 @@ depends=(
   "${_node}"
 )
 provides=(
-  "${_pkg}=${pkgver}"
+  # "${_pkg}=${pkgver}"
+  "nodejs-${_pkg}=${pkgver}"
 )
 makedepends=(
   "npm"
@@ -250,7 +251,7 @@ build() {
   fi
 }
 
-package_encoding-tools.js() {
+package_evmfs.js() {
   local \
     _npm_options=() \
     _find_opts=()
@@ -284,4 +285,3 @@ package_encoding-tools.js() {
 }
 
 # vim:set sw=2 sts=-1 et:
-
