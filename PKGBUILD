@@ -80,7 +80,7 @@ pkgdesc="${_pkgdesc[*]}"
 _commit="d4871e40d299fd97dc9377aa7fb47852536da4f6"
 _pkgver="0.0.3"
 pkgver="0.0.3"
-pkgrel=1
+pkgrel=2
 arch=(
   'any'
 )
