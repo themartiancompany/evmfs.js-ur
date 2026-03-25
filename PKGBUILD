@@ -108,15 +108,15 @@ elif [[ "${_npm}" == "false" ]]; then
   _tag_name="commit"
 fi
 _tarname="${_pkg}-${_tag}"
-_npm_tarname="${_ns}-${_pkg}-${_tag}"
+_tarname_npm="${_pkg_npm}-${_tag}"
 _tarfile="${_tarname}.${_archive_format}"
-_npm_tarfile="${_npm_tarname}.${_archive_format}"
-_sum="e78e5ee6b2a434d29eea1b6811b552d532a2a0c742f31d1bce431b57aa066145"
-_sig_sum="SKIP"
+_tarfile_npm="${_tarname_npm}.${_archive_format}"
+_sum="6dca98080776d9f8c195a167e326a8cbb3071b1e9b21b2c671dd918d8a54ba45"
+_sig_sum="6b5e642169284f4d75be4c49796683a9c9c0614104da6084a5913825fd2a56a7"
 _bundle_sum="SKIP"
 _bundle_sig_sum="SKIP"
-_npm_sum="SKIP"
-_npm_sig_sum="SKIP"
+_npm_sum="4e9f40f9ee7d8e8ccdd912a65744d2dabc804148a69e1b8045d1f4fe1d7b2123"
+_npm_sig_sum="cdcecc913e3bf01fbc1dc7da31d3dc95b4d89ba2d1b96104138783788f8bd27a"
 # Truocolo
 _evmfs_ns="0x6E5163fC4BFc1511Dbe06bB605cc14a3e462332b"
 # Dvorak
@@ -164,7 +164,7 @@ if [[ "${_evmfs}" == "true" ]]; then
   )
 elif [[ "${_evmfs}" == "false" ]]; then
   if [[ "${_npm}" == "true" ]]; then
-    _uri="${_npm_http}/@${_ns}/${_pkg}/-/${_tarfile}"
+    _uri="${_npm_http}/${_pkg_npm}/-/${_tarfile_npm}"
   elif [[ "${_npm}" == "false" ]]; then
     if [[ "${_tag_name}" == 'pkgver' ]]; then
       if [[ "${_git_http}" == "gitlab" ]]; then
@@ -180,7 +180,7 @@ elif [[ "${_evmfs}" == "false" ]]; then
   fi
 fi
 if [[ "${_npm}" == "true" ]]; then
-  _tarfile="${_npm_tarfile}"
+  _tarfile="${_tarfile_npm}"
 fi
 _src="${_tarfile}::${_uri}"
 source+=(
@@ -189,9 +189,10 @@ source+=(
 sha256sums+=(
   "${_sum}"
 )
+noextract=()
 if [[ "${_npm}" == "true" ]]; then
-  noextract=(
-    "${_tarfile}"
+  noextract+=(
+    "${_tarfile_npm}"
   )
 fi
 validpgpkeys=(
